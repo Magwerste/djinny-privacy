@@ -23,13 +23,9 @@
   information itself. We do not have a server of our own. The app does display ads,
   served by Google AdMob. See "Advertising" below for what that involves.</p>
 
-  <h2>Network requests</h2>
-  <p>To fetch quiz questions and categories, the app sends anonymous requests to the
-  <a href="https://opentdb.com">Open Trivia Database</a> (opentdb.com), a third-party
-  public API. These requests contain only the quiz parameters you choose (category,
-  difficulty, number of questions). No personal or device-identifying information is
-  sent. Please refer to Open Trivia Database's own policies for how they handle
-  request data.</p>
+  <h2>Quiz questions</h2>
+  <p>All quiz questions and categories are included in the app itself. The app makes
+  no network requests to fetch questions.</p>
 
   <h2>Advertising</h2>
   <p>Djinny shows ads through <a href="https://support.google.com/admob/answer/6128543">Google AdMob</a>.
@@ -59,13 +55,17 @@
   <ul>
     <li>Your music on/off preference</li>
     <li>Your quiz settings (category, difficulty, question count)</li>
+    <li>Your Daily Challenge and Quizzle streaks and progress</li>
+    <li>Your quiz history, including the answers you gave</li>
   </ul>
   <p>This data stays on your device and is removed if you uninstall the app.</p>
 
   <h2>Permissions</h2>
-  <p>The app requests <em>Internet</em> and <em>Network State</em> access to fetch
-  quiz questions and ads, and <em>Foreground Service</em> access to keep background
-  music playing while you play. No other device permissions are requested.</p>
+  <p>The app requests <em>Internet</em> and <em>Network State</em> access to show ads
+  and for optional Play Games sign-in, <em>Foreground Service</em> access to keep
+  background music playing while you play, <em>Notifications</em> access for the
+  optional daily reminder, and <em>Vibrate</em> access for haptic feedback. No other
+  device permissions are requested.</p>
 
   <h2>Children's privacy</h2>
   <p>Djinny is not directed at children, and we do not knowingly collect personal
@@ -80,7 +80,5 @@
   <p>Questions about this policy can be sent to
   <a href="mailto:magnus.stenhaug.dev@gmail.com">magnus.stenhaug.dev@gmail.com</a>.</p>
 
-  <footer>Djinny is developed independently and is not affiliated with Open Trivia
-  Database.</footer>
 </body>
 </html>
