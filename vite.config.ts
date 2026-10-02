@@ -1,6 +1,5 @@
 import path from "node:path";
-import tailwindcss from "@tailwindcss/vite";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 import { defineConfig, type Plugin } from "vite";
 import { APP_ID, PLAY_URL } from "./site.config";
 
@@ -11,6 +10,7 @@ const SITE_URL = (process.env.SITE_URL || "https://magwerste.github.io/djinny-ap
 
 /** Fills %SITE_URL% / %PLAY_URL% in index.html and emits robots.txt + sitemap.xml. */
 function seo(): Plugin {
+  let ssr = false;
   const replacements: Record<string, string> = {
     "%SITE_URL%": SITE_URL,
     "%PLAY_URL%": PLAY_URL,
@@ -18,9 +18,16 @@ function seo(): Plugin {
   };
   return {
     name: "djinny-seo",
-    transformIndexHtml: (html) =>
-      Object.entries(replacements).reduce((out, [k, v]) => out.replaceAll(k, v), html),
+    configResolved: (config) => {
+      ssr = !!config.build.ssr;
+    },
+    // "pre" so the placeholders are filled before Vite parses URLs in the HTML (it rejects "%...%").
+    transformIndexHtml: {
+      order: "pre",
+      handler: (html) => Object.entries(replacements).reduce((out, [k, v]) => out.replaceAll(k, v), html),
+    },
     generateBundle() {
+      if (ssr) return; // the SSR build only produces the prerender entry
       const lastmod = new Date().toISOString().slice(0, 10);
       this.emitFile({
         type: "asset",
@@ -45,6 +52,6 @@ function seo(): Plugin {
 export default defineConfig({
   // Relative asset URLs so the build works under a GitHub Pages project path or a custom domain.
   base: "./",
-  plugins: [react(), tailwindcss(), seo()],
+  plugins: [react(), seo()],
   resolve: { alias: { "@": path.resolve(import.meta.dirname, "src") } },
 });

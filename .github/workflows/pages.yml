@@ -25,6 +25,7 @@ jobs:
       - id: pages
         uses: actions/configure-pages@v5
       - run: npm ci
+      - run: npm run lint
       - run: npm run build
         env:
           # Canonical/OG/sitemap URLs follow the real Pages URL, so a repo rename needs no code change.

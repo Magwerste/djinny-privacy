@@ -13,5 +13,5 @@
     "isolatedModules": true,
     "verbatimModuleSyntax": true
   },
-  "include": ["vite.config.ts", "site.config.ts"]
+  "include": ["vite.config.ts", "tailwind.config.ts", "site.config.ts"]
 }

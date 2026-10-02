@@ -9,7 +9,7 @@ export function Footer() {
           <a href="./delete-account.html" className="hover:text-primary">Delete your data</a>
           <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-primary">Contact</a>
         </nav>
-        <p>© {new Date().getFullYear()} Djinny.</p>
+        <p suppressHydrationWarning>© {new Date().getFullYear()} Djinny.</p>
         <p>Google Play and the Google Play logo are trademarks of Google LLC.</p>
       </div>
     </footer>
